@@ -1,7 +1,7 @@
 /**
 * Template Name: HeroBiz
 * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-* Updated: Jun 06 2024 with Bootstrap v5.3.3
+* Updated: Jun 29 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
@@ -12,9 +12,9 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font:"Lato", sans-serif;
-  --heading-font: "Big Shoulders Text", sans-serif;
-  --nav-font: "Lato", sans-serif;
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Source Sans Pro",  sans-serif;
+  --nav-font: "Poppins",  sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -24,6 +24,7 @@
   --heading-color: #2E008E; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #2E008E; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --contrast-color: #8811FF; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
+  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
@@ -35,9 +36,19 @@
   --nav-dropdown-hover-color: #8811FF; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
-/* Template Custom Colors */
-:root {
-  --footer-background-color: #000000;
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
+.light-background {
+  --background-color: #eef0f2;
+  --surface-color: #ffffff;
+}
+
+.dark-background {
+  --background-color: #3a4753;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #4f6171;
+  --contrast-color: #ffffff;
 }
 
 /* Smooth scroll */
@@ -46,7 +57,7 @@
 }
 
 /*--------------------------------------------------------------
-# General
+# General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
   color: var(--default-color);
@@ -75,13 +86,144 @@ h6 {
   font-family: var(--heading-font);
 }
 
+/* Pulsating Play Button
+------------------------------*/
+.pulsating-play-btn {
+  width: 94px;
+  height: 94px;
+  background: radial-gradient(var(--accent-color) 50%, color-mix(in srgb, var(--accent-color), transparent 75%) 52%);
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.pulsating-play-btn:before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  animation-delay: 0s;
+  animation: pulsate-play-btn 2s;
+  animation-direction: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps;
+  opacity: 1;
+  border-radius: 50%;
+  border: 5px solid color-mix(in srgb, var(--accent-color), transparent 30%);
+  top: -15%;
+  left: -15%;
+  background: rgba(198, 16, 0, 0);
+}
+
+.pulsating-play-btn:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-40%) translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #fff;
+  z-index: 100;
+  transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.pulsating-play-btn:hover:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-40%) translateY(-50%);
+  width: 0;
+  height: 0;
+  border: none;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #fff;
+  z-index: 200;
+  animation: none;
+  border-radius: 0;
+}
+
+.pulsating-play-btn:hover:after {
+  border-left: 15px solid var(--accent-color);
+  transform: scale(20);
+}
+
+@keyframes pulsate-play-btn {
+  0% {
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1, 1);
+    opacity: 0;
+  }
+}
+
+/* PHP Email Form Messages
+------------------------------*/
+.php-email-form .error-message {
+  display: none;
+  background: #df1529;
+  color: #ffffff;
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .sent-message {
+  display: none;
+  color: #ffffff;
+  background: #059652;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .loading {
+  display: none;
+  background: var(--surface-color);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+}
+
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color);
+  animation: php-email-form-loading 1s linear infinite;
+}
+
+@keyframes php-email-form-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
 .header {
   color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 20px 0;
+  background-color:#ffffff;
+  width:100%;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -96,8 +238,9 @@ h6 {
 }
 
 .header .logo h1 {
-  font-size: 32px;
-  font-weight: 300;
+  font-family: "Montserrat Subrayada", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
   margin: 0;
   color: var(--heading-color);
 }
@@ -111,8 +254,10 @@ h6 {
 
 .header .btn-getstarted,
 .header .btn-getstarted:focus {
-  color: var(--contrast-color);
-  background: var(--accent-color);
+  color: var(--background-color);
+  background: var(--contrast-color);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
   font-size: 14px;
   padding: 8px 26px;
   margin: 0;
@@ -152,8 +297,15 @@ h6 {
 /* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
-    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0% ; 
+    width: 960px;
   }
+
+
 
   .navmenu ul {
     margin: 0;
@@ -181,8 +333,8 @@ h6 {
     color: #2E008E;
     font-size: 15px;
     padding: 0 2px;
-    font-family: var(--nav-font);
-    font-weight: 400;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -222,7 +374,7 @@ h6 {
   .navmenu li:hover>a,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--nav-hover-color);
+    color: #8811FF;
   }
 
   .navmenu .dropdown ul {
@@ -305,7 +457,7 @@ h6 {
     padding: 10px 0;
     margin: 0;
     border-radius: 6px;
-    background-color: var(--nav-dropdown-background-color);
+    background-color: var(--nav-mobile-background-color);
     border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
     box-shadow: none;
     overflow-y: auto;
@@ -411,10 +563,6 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  --background-color: var(--footer-background-color);
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --contrast-color: #ffffff;
   color: var(--default-color);
   background-color: var(--background-color);
   font-size: 14px;
@@ -703,7 +851,113 @@ section,
   margin-bottom: 0;
 }
 
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  min-height: 50vh;
+  position: relative;
+  padding: 120px 0 60px 0;
+  display: flex;
+  align-items: center;
+  background: url("../img/fondo1.png") center center;
+  background-size: cover;
+}
 
+.hero h1 {
+
+  font-family: "Big Shoulders Text", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 64px;
+  font-weight: 900;
+  margin: 0 0 10px 0;
+}
+
+.hero h1 span {
+  color: var(--accent-color);
+  font-family: "Big Shoulders Text", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 56px;
+}
+
+.hero p {
+  color: color-mix(in srgb, var(--default-color), transparent 0%);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-size: 18px;
+}
+
+.hero .btn-get-started {
+  color: #ffffff;
+  background: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.hero .btn-get-started:hover {
+  color: var(--contrast-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.hero .animated {
+  width: 150%;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (min-width: 992px) {
+  .hero .animated {
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero .animated {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero .animated {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+  .hero .btn-get-started,
+  .hero .btn-watch-video {
+    font-size: 13px;
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
 
 /*--------------------------------------------------------------
 # Featured Services Section
@@ -716,18 +970,14 @@ section,
 
 .featured-services .service-item .icon {
   margin-bottom: 10px;
-}
-
-.featured-services .service-item .icon i {
-  color: var(--accent-color);
-  font-size: 36px;
-  transition: 0.3s;
+  text-align: center;
 }
 
 .featured-services .service-item h4 {
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 20px;
+  text-align: center;
 }
 
 .featured-services .service-item h4 a {
@@ -735,6 +985,7 @@ section,
   font-family: "Big Shoulders Text", sans-serif;
   font-weight: 800;
   transition: ease-in-out 0.3s;
+  text-align: center;
 }
 
 .featured-services .service-item p {
@@ -744,11 +995,13 @@ section,
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .featured-services .service-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0px 5px 90px 0px color-mix(in srgb, var(--default-color), transparent 90%);
+  background-color: var(--surface-color);
+  box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
 }
 
 .featured-services .service-item:hover h4 a {
@@ -758,16 +1011,26 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+.about .section-title{
+  background-color: var(--background-color);
+}
+
+.about .container {
+  padding: 20px;
+  background-color: #ffffff8c;
+  border: 1px solid #8811FF;
+  align-content: center;
+}
+
 .about .about-img {
   position: relative;
-  margin: 60px 0 0 60px;
 }
 
 .about .about-img:before {
   position: absolute;
   inset: -60px 0 0 -60px;
   content: "";
-  background: url("../img/text1\ \(3\).jpg") top left;
+  background: url("../img/about-bg.png") top left;
   background-repeat: no-repeat;
   z-index: 1;
 }
@@ -791,13 +1054,6 @@ section,
   font-family: "Big Shoulders Text", sans-serif;
   font-weight: 800;
   font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.about p {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
   margin-bottom: 20px;
 }
 
@@ -856,51 +1112,16 @@ section,
   margin-right: 8px;
   color: var(--accent-color);
 }
-
-/*--------------------------------------------------------------
-# Clients Section
---------------------------------------------------------------*/
-.clients {
-  margin-top: 50px;
-  padding: 80px 80px 80px 80px;
-  background: url("../img/oa.png") top left;
-
-}
-
-.clients .client-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.clients .client-logo img {
-  transition: 0.3s;
-  opacity: 100;
-}
-
-.clients .client-logo img:hover {
-  filter: none;
-  opacity: 1;
-}
-
-@media (max-width: 640px) {
-  .clients .client-logo img {
-    padding: 20px;
-  }
-}
-
 /*--------------------------------------------------------------
 # Call To Action Section
 --------------------------------------------------------------*/
 .call-to-action {
-  padding: 80px;
-  background: url("assets/img/fondo1.png")
-
+  padding: 0;
 }
 
 .call-to-action .container {
   padding: 80px;
+  background: color-mix(in srgb, var(--default-color), transparent 96%);
   border-radius: 15px;
 }
 
@@ -908,24 +1129,12 @@ section,
   .call-to-action .container {
     padding: 60px;
   }
-
-}
-
-.call-to-action .content h3 span {
-  font-family: "Big Shoulders Text", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-size: 56px;
 }
 
 .call-to-action .content h3 {
-  font-family: "Big Shoulders Text", sans-serif;
-  font-optical-sizing: auto;
-  font-size: 64px;
-  font-weight: 900;
+  font-size: 48px;
+  font-weight: 700;
 }
-
-
 
 .call-to-action .content h3 em {
   font-style: normal;
@@ -945,39 +1154,36 @@ section,
 }
 
 .call-to-action .content p {
-  color: color-mix(in srgb, var(--default-color), transparent 0%);
-  font-family: "Lato", sans-serif;
-  font-weight: 700;
-  font-optical-sizing: auto;
-  font-weight: 700;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  font-weight: 400;
   font-size: 18px;
 }
 
 .call-to-action .content .cta-btn {
-  font-family: "Lato", sans-serif;
-  font-weight: 700;
-  color: var(--background-color);
-  font-size: 20px;
+  color: var(--contrast-color);
+  font-weight: 500;
+  font-size: 16px;
   display: inline-block;
   padding: 12px 40px;
   border-radius: 5px;
   transition: 0.5s;
   margin-top: 10px;
-  background: var(--contrast-color);
+  background: var(--accent-color);
 }
 
 .call-to-action .content .cta-btn:hover {
-  background: color-mix(in srgb, var(--contrast-color) 90%, black 15%);
+  background: color-mix(in srgb, var(--accent-color) 90%, black 15%);
 }
 
 .call-to-action .img {
-  width: 1500%
+  position: relative;
 }
 
 .call-to-action .img:before {
   content: "";
-  position: relative;
+  position: absolute;
   inset: 0;
+  background: color-mix(in srgb, var(--contrast-color), transparent 20%);
   border-radius: 15px;
   transform: rotate(6deg);
   z-index: 2;
@@ -987,34 +1193,36 @@ section,
   content: "";
   position: absolute;
   inset: 0;
+  background: color-mix(in srgb, var(--default-color), transparent 95%);
   border-radius: 15px;
   transform: rotate(12deg);
   z-index: 1;
 }
 
 .call-to-action .img img {
-  width: max-content
+  position: relative;
+  z-index: 3;
+  border-radius: 15px;
+  z-index: 3;
 }
 
 /*--------------------------------------------------------------
 # Onfocus Section
 --------------------------------------------------------------*/
 .onfocus {
-  --default-color: #fff;
-  --background-color: #2d008e65;
-  --heading-color: #fff;
-  padding: 0;
-  margin-top: 60px;
+  padding: 10px;
+  background-color:#2d008e80
 }
 
 .onfocus .video-play {
-  min-height: 400px;
-  background: linear-gradient(color-mix(in srgb, var(--background-color), transparent 90%), color-mix(in srgb, var(--background-color), transparent 75%)), url("../img/tallereco.png") center center;
+  min-height: fit-content;
+  background: url("../img/tallereco.png") center center;
   background-size: cover;
 }
 
+
 .onfocus .content {
-  background:color(srgb 46 0 142)
+  background-size: cover;
   padding: 40px;
 }
 
@@ -1024,18 +1232,25 @@ section,
   }
 }
 
-.onfocus .content h3 {
-  font-family: "Big Shoulders Text", sans-serif;
-  font-weight: 800;
-  color: #000000;
-  font-size: 32px;
-}
 
 .onfocus .content p {
   font-family: "Lato", sans-serif;
-  font-weight: 600;
-color: #2E008E;
-  font-size: 16px;
+  font-weight: 900;
+  color: #2E008E;
+}
+
+.onfocus .content h3 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.onfocus .content h3 em {
+  font-family: "Montserrat Subrayada", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+ 
+  font-size: 32px;
 }
 
 .onfocus .content ul {
@@ -1045,7 +1260,8 @@ color: #2E008E;
 
 .onfocus .content ul li {
   padding-bottom: 10px;
-  color: #000000;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
 }
 
 .onfocus .content ul i {
@@ -1059,17 +1275,17 @@ color: #2E008E;
 }
 
 .onfocus .content .read-more {
+  font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 16px;
-  letter-spacing: 1px;
   padding: 12px 24px;
   border-radius: 5px;
   transition: 0.3s;
   display: -nline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--contrast-color);
-  background: var(--accent-color);
+  color: #ffffff ;
+  background: #8811FF;
 }
 
 .onfocus .content .read-more i {
@@ -1080,7 +1296,7 @@ color: #2E008E;
 }
 
 .onfocus .content .read-more:hover {
-  background: color-mix(in srgb, var(--accent-color) 90%, black 15%);
+  background: #2E008E;
   padding-right: 19px;
 }
 
@@ -1155,18 +1371,6 @@ color: #2E008E;
   transform: scale(20);
 }
 
-@keyframes pulsate-btn {
-  0% {
-    transform: scale(0.6, 0.6);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1, 1);
-    opacity: 0;
-  }
-}
-
 /*--------------------------------------------------------------
 # Features Section
 --------------------------------------------------------------*/
@@ -1175,10 +1379,11 @@ color: #2E008E;
 }
 
 .features .nav-link {
+  background-color: var(--surface-color);
+  color: var(--color-secondary);
   border: 0;
   padding: 25px 20px;
-  color: var(--color-secondary);
-  box-shadow: 5px 5px 25px color-mix(in srgb, var(--default-color), transparent 92%);
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.1);
   border-radius: 0;
   display: flex;
   align-items: center;
@@ -1257,67 +1462,89 @@ color: #2E008E;
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
-
-.section-title {
-padding: 80px 20px 20px ;
+.services .img {
+  overflow: hidden;
 }
 
-.services .img {
-  padding: 80px;
-  border-radius: 8px;
-  overflow: hidden;
+.section-title h2{
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 700;
+}
+
+.section-title p {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  color: #000000;
 }
 
 .services .img img {
   transition: 0.6s;
 }
 
-.service-item {
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
-  padding: 30px;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: var(--default-color), transparent 50%;
-}
-
 .services .details {
+  background: color-mix(in srgb, var(--surface-color), transparent 20%);
   padding: 50px 30px;
   margin: -100px 30px 0 30px;
   transition: all ease-in-out 0.3s;
   position: relative;
-  background: color-mix(in srgb, var(--contrast-color), transparent 5%);
   text-align: center;
-  border-radius: 8px;
-  box-shadow: 0px 0 25px color-mix(in srgb, var(--default-color), transparent 92%);
+  border: 1px solid #8811FF;
+  
+  box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
 }
-.cta-btn {
-  color: var(--contrast-color);
-  font-weight: 500;
-  font-size: 16px;
-  display: inline-block;
-  padding: 12px 40px;
-  border-radius: 5px;
-  transition: 0.5s;
-  margin-top: 10px;
-  background: var(--accent-color);
-}
-
 
 .services .details h3 {
-  font-weight: 200;
-  margin: 10px 0 15px 0;
-  font-size: 22px;
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
   transition: ease-in-out 0.3s;
-  text-align: center;
+}
+
+.services .details h3 em {
+  font-family: "Montserrat Subrayada", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 32px;
+  transition: ease-in-out 0.3s;
 }
 
 .services .details p {
-  color: color-mix(in srgb, var(--default-color), transparent 10%);
-  line-height: 24px;
+  color: #000000 ;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  line-height: 16px;
   font-size: 14px;
-  margin-bottom: 0;
-  text-align: center;
+  margin: 10px 15px 30px 10px;
+}
+
+.services .details .read-more{
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: -nline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff ;
+  background: #8811FF;
+}
+
+.services .details .read-more i {
+  font-size: 18px;
+  margin-left: 5px;
+  line-height: 0;
+  transition: 0.3s;
+}
+
+.services .details .read-more:hover {
+  background: #2E008E;
+  padding-right: 19px;
+}
+
+.services .details .read-more:hover i {
+  margin-left: 10px;
 }
 
 .services .service-item:hover .details h3 {
@@ -1325,7 +1552,7 @@ padding: 80px 20px 20px ;
 }
 
 .services .service-item:hover .details .icon {
-  background: var(--contrast-color);
+  background: var(--surface-color);
   border: 2px solid var(--accent-color);
 }
 
@@ -1341,9 +1568,6 @@ padding: 80px 20px 20px ;
 # Testimonials Section
 --------------------------------------------------------------*/
 .testimonials {
-  --default-color: #ffffff;
-  --background-color: #2d008e8a;
-  --heading-color: #ffffff;
   padding: 80px 0;
   position: relative;
 }
@@ -1465,19 +1689,19 @@ padding: 80px 20px 20px ;
 # Pricing Section
 --------------------------------------------------------------*/
 .pricing .pricing-item {
+  background-color: var(--backgroun-color);
   padding: 60px 40px;
-  box-shadow: 0 3px 20px -2px color-mix(in srgb, var(--default-color), transparent 92%);
-  background: var(--color-white);
+  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 4px solid var(--contrast-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .pricing .pricing-header {
-  background: linear-gradient(color-mix(in srgb, var(--default-color), transparent 10%), color-mix(in srgb, var(--default-color), transparent 20%)), url("../img/pricing-bg.jpg") center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("../img/pricing-bg.jpg") center center;
   background-size: cover;
   text-align: center;
   padding: 40px;
@@ -1591,10 +1815,11 @@ padding: 80px 20px 20px ;
 }
 
 .faq .faq-container .faq-item {
+  background-color: var(--surface-color);
   position: relative;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0px 5px 25px 0px color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -1687,8 +1912,9 @@ padding: 80px 20px 20px ;
   cursor: pointer;
   display: inline-block;
   padding: 0;
-  font-size: 18px;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
+  font-size: 18px;
   margin: 0 10px;
   line-height: 1;
   margin-bottom: 5px;
@@ -1697,7 +1923,10 @@ padding: 80px 20px 20px ;
 
 .portfolio .portfolio-filters li:hover,
 .portfolio .portfolio-filters li.filter-active {
-  color: var(--accent-color);
+  color: var(--contrast-color);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  text-decoration: underline solid #8811FF;
 }
 
 .portfolio .portfolio-filters li:first-child {
@@ -1718,11 +1947,11 @@ padding: 80px 20px 20px ;
 .portfolio .portfolio-content {
   position: relative;
   overflow: hidden;
-  border: 1px solid #2e008e;
 }
 
 .portfolio .portfolio-content img {
   transition: 0.3s;
+  border: 1px solid #2E008E ;
 }
 
 .portfolio .portfolio-content .portfolio-info {
@@ -1835,10 +2064,11 @@ padding: 80px 20px 20px ;
 }
 
 .team .team-member .member-info {
+  background-color: var(--surface-color);
   padding: 30px 15px;
   text-align: center;
-  box-shadow: 0px 2px 15px color-mix(in srgb, var(--default-color), transparent 92%);
-  background: var(--contrast-color);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  background: var(--surface-color);
   margin: -50px 20px 0 20px;
   position: relative;
   border-radius: 8px;
@@ -1871,14 +2101,13 @@ padding: 80px 20px 20px ;
 /*--------------------------------------------------------------
 # Recent Posts Section
 --------------------------------------------------------------*/
-
 .recent-posts article {
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
+  background: var(--surface-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
   height: 100%;
+  border-radius: 10px;
   overflow: hidden;
-  background-color: var(--accent-color);
-   border: 1px solid #2e008e;
 }
 
 .recent-posts .post-img {
@@ -1930,8 +2159,9 @@ padding: 80px 20px 20px ;
 # Contact Section
 --------------------------------------------------------------*/
 .contact .info {
+  background-color: var(--surface-color);
   padding: 40px;
-  box-shadow: 0px 2px 15px color-mix(in srgb, var(--default-color), transparent 92%);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -1981,46 +2211,6 @@ padding: 80px 20px 20px ;
   padding-bottom: 8px;
 }
 
-.contact .php-email-form .error-message {
-  display: none;
-  color: #ffffff;
-  background: #df1529;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .error-message br+br {
-  margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-  display: none;
-  text-align: center;
-  padding: 15px;
-}
-
-.contact .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--background-color);
-  animation: animate-loading 1s linear infinite;
-}
-
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email],
 .contact .php-email-form textarea {
@@ -2059,16 +2249,6 @@ padding: 80px 20px 20px ;
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color) 90%, black 15%);
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /*--------------------------------------------------------------
@@ -2250,6 +2430,7 @@ padding: 80px 20px 20px ;
 # Service Details Section
 --------------------------------------------------------------*/
 .service-details .services-list {
+  background-color: var(--surface-color);
   padding: 10px 30px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   margin-bottom: 20px;
@@ -2314,11 +2495,15 @@ padding: 80px 20px 20px ;
 /*--------------------------------------------------------------
 # Blog Posts Section
 --------------------------------------------------------------*/
+
+
 .blog-posts article {
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
+  background-color: var(--contrast-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
   height: 100%;
   border-radius: 10px;
+  border: 1px solid #2E008E;
   overflow: hidden;
 }
 
@@ -2326,16 +2511,16 @@ padding: 80px 20px 20px ;
   max-height: 240px;
   margin: -30px -30px 15px -30px;
   overflow: hidden;
+  border: 1px solid #2E008E;
 }
 
 .blog-posts .post-category {
   font-size: 16px;
-  color: color-mix(in srgb, var(--accent-color), transparent 40%);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   margin-bottom: 10px;
 }
 
 .blog-posts .title {
-  font-family: var(--default-font);
   font-size: 20px;
   font-weight: 700;
   padding: 0;
@@ -2343,7 +2528,6 @@ padding: 80px 20px 20px ;
 }
 
 .blog-posts .title a {
-  font-family: var(--default-font);
   color: var(--heading-color);
   transition: 0.3s;
 }
@@ -2370,26 +2554,26 @@ padding: 80px 20px 20px ;
 }
 
 /*--------------------------------------------------------------
-# Pagination 2 Section
+# Blog Pagination Section
 --------------------------------------------------------------*/
-.pagination-2 {
+.blog-pagination {
   padding-top: 0;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
 
-.pagination-2 ul {
+.blog-pagination ul {
   display: flex;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.pagination-2 li {
+.blog-pagination li {
   margin: 0 5px;
   transition: 0.3s;
 }
 
-.pagination-2 li a {
+.blog-pagination li a {
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   padding: 7px 16px;
   display: flex;
@@ -2397,14 +2581,14 @@ padding: 80px 20px 20px ;
   justify-content: center;
 }
 
-.pagination-2 li.active,
-.pagination-2 li:hover {
+.blog-pagination li a.active,
+.blog-pagination li a:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
 }
 
-.pagination-2 li.active a,
-.pagination-2 li:hover a {
+.blog-pagination li a.active a,
+.blog-pagination li a:hover a {
   color: var(--contrast-color);
 }
 
@@ -2416,8 +2600,9 @@ padding: 80px 20px 20px ;
 }
 
 .blog-details .article {
+  background-color: var(--surface-color);
   padding: 30px;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .blog-details .post-img {
@@ -2568,8 +2753,9 @@ padding: 80px 20px 20px ;
 }
 
 .blog-author .author-container {
+  background-color: var(--surface-color);
   padding: 20px;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .blog-author img {
@@ -2604,7 +2790,7 @@ padding: 80px 20px 20px ;
 # Blog Comments Section
 --------------------------------------------------------------*/
 .blog-comments {
-  padding-top: 10px;
+  padding: 10px 0;
 }
 
 .blog-comments .comments-count {
@@ -2659,23 +2845,31 @@ padding: 80px 20px 20px ;
   padding-left: 40px;
 }
 
-.blog-comments .reply-form {
-  margin-top: 30px;
-  padding: 30px;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
+/*--------------------------------------------------------------
+# Comment Form Section
+--------------------------------------------------------------*/
+.comment-form {
+  padding-top: 10px;
 }
 
-.blog-comments .reply-form h4 {
+.comment-form form {
+  background-color: var(--surface-color);
+  margin-top: 30px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form form h4 {
   font-weight: bold;
   font-size: 22px;
 }
 
-.blog-comments .reply-form p {
+.comment-form form p {
   font-size: 14px;
 }
 
-.blog-comments .reply-form input {
-  background-color: var(--background-color);
+.comment-form form input {
+  background-color: var(--surface-color);
   color: var(--default-color);
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
   font-size: 14px;
@@ -2683,13 +2877,19 @@ padding: 80px 20px 20px ;
   padding: 10px 10px;
 }
 
-.blog-comments .reply-form input:focus {
+.comment-form form input:focus {
+  color: var(--default-color);
+  background-color: var(--surface-color);
   box-shadow: none;
   border-color: var(--accent-color);
 }
 
-.blog-comments .reply-form textarea {
-  background-color: var(--background-color);
+.comment-form form input::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+}
+
+.comment-form form textarea {
+  background-color: var(--surface-color);
   color: var(--default-color);
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
   border-radius: 4px;
@@ -2698,16 +2898,22 @@ padding: 80px 20px 20px ;
   height: 120px;
 }
 
-.blog-comments .reply-form textarea:focus {
+.comment-form form textarea:focus {
+  color: var(--default-color);
   box-shadow: none;
   border-color: var(--accent-color);
+  background-color: var(--surface-color);
 }
 
-.blog-comments .reply-form .form-group {
+.comment-form form textarea::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+}
+
+.comment-form form .form-group {
   margin-bottom: 25px;
 }
 
-.blog-comments .reply-form .btn-primary {
+.comment-form form .btn-primary {
   border-radius: 4px;
   padding: 10px 20px;
   border: 0;
@@ -2715,7 +2921,7 @@ padding: 80px 20px 20px ;
   color: var(--contrast-color);
 }
 
-.blog-comments .reply-form .btn-primary:hover {
+.comment-form form .btn-primary:hover {
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
@@ -2723,17 +2929,15 @@ padding: 80px 20px 20px ;
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section 
-  /* Add your styles here */
-
 
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
 .widgets-container {
+  background-color: var(--surface-color);
   padding: 30px;
   margin: 60px 0 30px 0;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .widget-title {
@@ -2757,6 +2961,7 @@ padding: 80px 20px 20px ;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
   padding: 3px 10px;
   position: relative;
+  transition: 0.3s;
 }
 
 .search-widget form input[type=text] {
@@ -2794,6 +2999,10 @@ padding: 80px 20px 20px ;
 
 .search-widget form button:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.search-widget form:is(:focus-within) {
+  border-color: var(--accent-color);
 }
 
 .categories-widget ul {
@@ -2895,128 +3104,4 @@ padding: 80px 20px 20px ;
   padding-left: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
-}
-
-/*--------------------------------------------------------------
-# Hero Section
---------------------------------------------------------------*/
-.hero {
-  width: 100%;
-  min-height: 50vh;
-  position: relative;
-  padding: 120px 0 60px 0;
-  display: flex;
-  align-items: center;
-  background: url("../img/hero-bg.png") center center;
-  background-size: cover;
-}
-
-.hero h1 {
-  margin: 0 0 10px 0;
-  font-size: 48px;
-  font-weight: 300;
-}
-
-.hero h1 span {
-  color: var(--accent-color);
-}
-
-.hero p {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  margin: 5px 0 30px 0;
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.hero .btn-get-started {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  font-family: var(--heading-font);
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 10px 28px;
-  border-radius: 4px;
-  transition: 0.5s;
-}
-
-.hero .btn-get-started:hover {
-  color: var(--contrast-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 15%);
-}
-
-.hero .btn-watch-video {
-  font-size: 16px;
-  transition: 0.5s;
-  margin-left: 25px;
-  color: var(--default-color);
-  font-weight: 500;
-}
-
-.hero .btn-watch-video i {
-  color: var(--accent-color);
-  font-size: 32px;
-  transition: 0.3s;
-  line-height: 0;
-  margin-right: 8px;
-}
-
-.hero .btn-watch-video:hover {
-  color: var(--accent-color);
-}
-
-.hero .btn-watch-video:hover i {
-  color: color-mix(in srgb, var(--accent-color), transparent 15%);
-}
-
-.hero .animated {
-  margin-bottom: 60px;
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
-@media (min-width: 992px) {
-  .hero .animated {
-    max-width: 45%;
-  }
-}
-
-@media (max-width: 991px) {
-  .hero .animated {
-    max-width: 60%;
-  }
-}
-
-@media (max-width: 575px) {
-  .hero .animated {
-    max-width: 80%;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  .hero p {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
-  .hero .btn-get-started,
-  .hero .btn-watch-video {
-    font-size: 13px;
-  }
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-
-  100% {
-    transform: translateY(-10px);
-  }
 }
