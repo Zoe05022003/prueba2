@@ -19,7 +19,7 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #FEDDFF; /* Background color for the entire website, including individual sections */
+  --background-color: #fff; /* Background color for the entire website, including individual sections */
   --default-color: #2E008E; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #2E008E; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #2E008E; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
@@ -29,7 +29,7 @@
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
+  --nav-color: #2E008E;  /* The default color of the main navmenu links */
   --nav-hover-color: #8811FF; /* Applied to main navmenu links when they are hovered over or active */
   --nav-dropdown-background-color: #000000; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #485664; /* Used for navigation links of the dropdown items in the navigation menu. */
@@ -82,8 +82,8 @@ h6 {
 --------------------------------------------------------------*/
 .header {
   color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 20px 0;
+  background-color:#ffffff;
+  width:100%;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -104,6 +104,7 @@ h6 {
   margin: 0;
   color: var(--heading-color);
 }
+
 .header .logo span {
   color: var(--accent-color);
   font-weight: 400;
@@ -129,6 +130,7 @@ h6 {
   color: var(--contrast-color);
   background: color-mix(in srgb, var(--accent-color), transparent 15%);
 }
+
 @media (max-width: 1200px) {
   .header .logo {
     order: 1;
@@ -138,25 +140,33 @@ h6 {
     order: 2;
     margin: 0 15px 0 0;
     padding: 6px 20px;
+    display: none;
   }
 
   .header .navmenu {
     order: 3;
+    padding: 10px;
   }
 }
 
 .scrolled .header {
   box-shadow: 0px 0 18px color-mix(in srgb, var(--default-color), transparent 85%);
 }
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
-    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0% ; 
+    width: 960px;
   }
+
+
 
   .navmenu ul {
     margin: 0;
@@ -181,11 +191,11 @@ h6 {
 
   .navmenu a,
   .navmenu a:focus {
-    color: var(--nav-color);
+    color: #2E008E;
     font-size: 15px;
     padding: 0 2px;
-    font-family: var(--nav-font);
-    font-weight: 400;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -225,7 +235,7 @@ h6 {
   .navmenu li:hover>a,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--nav-hover-color);
+    color: #8811FF;
   }
 
   .navmenu .dropdown ul {
@@ -1129,7 +1139,7 @@ section,
   color: #fff;
 }
 
-.onfocus .content h3 em {
+.onfocus .content h3 {
   font-family: "Montserrat Subrayada", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -1298,10 +1308,12 @@ section,
 }
 
 .features .nav-link h4 {
-  font-size: 20px;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
   font-weight: 600;
   margin: 10px 0 0 0;
   color: #fff;
+  text-align: center;
 }
 
 .features .nav-link:hover {
@@ -1328,6 +1340,7 @@ section,
 
 .features .tab-content {
   margin-top: 30px;
+  background-color: #BF81FD;
 }
 
 .features .tab-pane.active {
@@ -1339,8 +1352,12 @@ section,
 }
 
 .features .tab-pane h3 {
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 28px;
+}
+.features .tab-pane p {
+  font-family: "Lato", sans-serif;
 }
 
 .features .tab-pane ul {
@@ -1350,6 +1367,8 @@ section,
 
 .features .tab-pane ul li {
   padding-bottom: 10px;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
 }
 
 .features .tab-pane ul i {
@@ -1360,6 +1379,10 @@ section,
 
 .features .tab-pane p:last-child {
   margin-bottom: 0;
+}
+
+.features .img-fluid {
+max-width: 120%;
 }
 
 /*--------------------------------------------------------------
@@ -1454,22 +1477,20 @@ section,
 # Testimonials Section
 --------------------------------------------------------------*/
 .testimonials {
-  --default-color: #ffffff;
-  --background-color: #000000;
-  --heading-color: #ffffff;
   padding: 80px 0;
   position: relative;
 }
 
 .testimonials:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  background: var(--background-color), transparent 80%;
   position: absolute;
   inset: 0;
   z-index: 2;
 }
 
 .testimonials .testimonials-bg {
+  background-color: #FEDDFF transparent 50%;
   position: absolute;
   inset: 0;
   display: block;
@@ -1484,6 +1505,13 @@ section,
   z-index: 3;
 }
 
+.testimonials .container .section-title h2 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: #2E008E;
+}
+
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {
   overflow: hidden;
@@ -1496,11 +1524,13 @@ section,
 .testimonials .testimonial-item .testimonial-img {
   width: 100px;
   border-radius: 50%;
-  border: 6px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border: 6px solid var(--background-color), transparent 85%;
   margin: 0 auto;
 }
 
 .testimonials .testimonial-item h3 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 900;
   font-size: 20px;
   font-weight: bold;
   margin: 10px 0 5px 0;
@@ -1584,13 +1614,20 @@ section,
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 4px solid var(--contrast-color);
-  border-radius: 10px;
+  border: 2px solid #BF81FD;
+  border-radius: 0px;
   overflow: hidden;
+}
+.pricing .container .section-title h1 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 36px;
+  color:#2E008E;
 }
 
 .pricing .pricing-header {
-  background: linear-gradient(color-mix(in srgb, var(--default-color), transparent 10%), color-mix(in srgb, var(--default-color), transparent 20%)), url("../img/pricing-bg.jpg") center center;
+  background: #BF81FD ;
   background-size: cover;
   text-align: center;
   padding: 40px;
@@ -1598,15 +1635,25 @@ section,
 }
 
 .pricing h3 {
+  font-family: "Big Shoulders Text", sans-serif;
   font-weight: 600;
   margin-bottom: 5px;
   font-size: 36px;
-  color: var(--contrast-color);
+  color: var(--accent-color);
+}
+
+.pricing h2 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 36px;
+  color: #BF81FD;
 }
 
 .pricing h4 {
+  font-family: "Big Shoulders Text", sans-serif;
   font-size: 48px;
-  color: var(--contrast-color);
+  color: var(--accent-color);
   font-weight: 400;
   margin-bottom: 0;
 }
@@ -1615,9 +1662,17 @@ section,
   font-size: 28px;
 }
 
-.pricing h4 span {
-  color: color-mix(in srgb, var(--contrast-color), transparent 20%);
-  font-size: 24px;
+.pricing h5 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 0;
+  color:#BF81FD ;
+}
+
+.pricing h5 sup {
+  color:#BF81FD ;
+  font-size: 28px;
 }
 
 .pricing ul {
@@ -1678,19 +1733,20 @@ section,
 }
 
 .pricing .featured .pricing-header {
-  background: linear-gradient(color-mix(in srgb, var(--accent-color), transparent 10%), color-mix(in srgb, var(--accent-color), transparent 20%)), url("../img/pricing-bg.jpg") center center;
+  background: #2E008E ;
 }
 
 .pricing .featured .buy-btn {
   border-color: var(--accent-color);
   background: var(--accent-color);
-  color: var(--contrast-color);
+  color: #BF81FD;
 }
 
 /*--------------------------------------------------------------
 # Faq Section
 --------------------------------------------------------------*/
 .faq .content h3 {
+  font-family: "Big Shoulders Text", sans-serif;
   font-weight: 400;
   font-size: 34px;
 }
@@ -1709,6 +1765,8 @@ section,
   margin-bottom: 20px;
   box-shadow: 0px 5px 25px 0px color-mix(in srgb, var(--default-color), transparent 90%);
   overflow: hidden;
+  border: 1px solid #2E008E;
+  background-color: #BF81FD;
 }
 
 .faq .faq-container .faq-item:last-child {
@@ -1984,447 +2042,6 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Recent Posts Section
---------------------------------------------------------------*/
-.recent-posts article {
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
-  padding: 30px;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.recent-posts .post-img {
-  max-height: 240px;
-  margin: -30px -30px 15px -30px;
-  overflow: hidden;
-}
-
-.recent-posts .post-category {
-  font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  margin-bottom: 10px;
-}
-
-.recent-posts .title {
-  font-size: 20px;
-  font-weight: 700;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.recent-posts .title a {
-  color: var(--heading-color);
-  transition: 0.3s;
-}
-
-.recent-posts .title a:hover {
-  color: var(--accent-color);
-}
-
-.recent-posts .post-author-img {
-  width: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
-}
-
-.recent-posts .post-author {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.recent-posts .post-date {
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  margin-bottom: 0;
-}
-
-/*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-.contact .info {
-  padding: 40px;
-  box-shadow: 0px 2px 15px color-mix(in srgb, var(--default-color), transparent 92%);
-  overflow: hidden;
-}
-
-.contact .info h3 {
-  font-weight: 600;
-  font-size: 24px;
-}
-
-.contact .info p {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin-bottom: 30px;
-  font-size: 15px;
-}
-
-.contact .info-item+.info-item {
-  padding-top: 20px;
-  margin-top: 20px;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.contact .info-item i {
-  font-size: 24px;
-  color: var(--accent-color);
-  transition: all 0.3s ease-in-out;
-  margin-right: 20px;
-}
-
-.contact .info-item h4 {
-  padding: 0;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.contact .info-item p {
-  padding: 0;
-  margin-bottom: 0;
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.contact .php-email-form {
-  width: 100%;
-}
-
-.contact .php-email-form .form-group {
-  padding-bottom: 8px;
-}
-
-.contact .php-email-form .error-message {
-  display: none;
-  color: #ffffff;
-  background: #df1529;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .error-message br+br {
-  margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-  display: none;
-  text-align: center;
-  padding: 15px;
-}
-
-.contact .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--background-color);
-  animation: animate-loading 1s linear infinite;
-}
-
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
-  border-radius: 0px;
-  box-shadow: none;
-  font-size: 14px;
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
-}
-
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
-  border-color: var(--accent-color);
-}
-
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email] {
-  height: 48px;
-  padding: 10px 15px;
-}
-
-.contact .php-email-form textarea {
-  padding: 10px 12px;
-  height: 290px;
-}
-
-.contact .php-email-form button[type=submit] {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  border: 0;
-  padding: 13px 50px;
-  transition: 0.4s;
-  border-radius: 4px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color) 90%, black 15%);
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/*--------------------------------------------------------------
-# Portfolio Details Section
---------------------------------------------------------------*/
-.portfolio-details .portfolio-details-slider img {
-  width: 100%;
-}
-
-.portfolio-details .swiper-wrapper {
-  height: auto;
-}
-
-.portfolio-details .swiper-button-prev,
-.portfolio-details .swiper-button-next {
-  width: 48px;
-  height: 48px;
-}
-
-.portfolio-details .swiper-button-prev:after,
-.portfolio-details .swiper-button-next:after {
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(0, 0, 0, 0.15);
-  font-size: 24px;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-}
-
-.portfolio-details .swiper-button-prev:hover:after,
-.portfolio-details .swiper-button-next:hover:after {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 575px) {
-
-  .portfolio-details .swiper-button-prev,
-  .portfolio-details .swiper-button-next {
-    display: none;
-  }
-}
-
-.portfolio-details .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.portfolio-details .swiper-pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
-  opacity: 1;
-}
-
-.portfolio-details .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
-}
-
-.portfolio-details .portfolio-info h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.portfolio-details .portfolio-info h3:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--accent-color);
-  left: 0;
-  bottom: 0;
-}
-
-.portfolio-details .portfolio-info ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.portfolio-details .portfolio-info ul li {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 15px;
-}
-
-.portfolio-details .portfolio-info ul strong {
-  text-transform: uppercase;
-  font-weight: 400;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  font-size: 14px;
-}
-
-.portfolio-details .portfolio-info .btn-visit {
-  padding: 8px 40px;
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  border-radius: 50px;
-  transition: 0.3s;
-}
-
-.portfolio-details .portfolio-info .btn-visit:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-}
-
-.portfolio-details .portfolio-description h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.portfolio-details .portfolio-description p {
-  padding: 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item {
-  padding: 30px 30px 0 30px;
-  position: relative;
-  background: color-mix(in srgb, var(--default-color), transparent 97%);
-  margin-bottom: 50px;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .testimonial-img {
-  width: 90px;
-  border-radius: 50px;
-  border: 6px solid var(--background-color);
-  float: left;
-  margin: 0 10px 0 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 15px 0 5px 0;
-  padding-top: 20px;
-}
-
-.portfolio-details .portfolio-description .testimonial-item h4 {
-  font-size: 14px;
-  color: #6c757d;
-  margin: 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-left,
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
-  color: color-mix(in srgb, var(--accent-color), transparent 50%);
-  font-size: 26px;
-  line-height: 0;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-left {
-  display: inline-block;
-  left: -5px;
-  position: relative;
-}
-
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
-  display: inline-block;
-  right: -5px;
-  position: relative;
-  top: 10px;
-  transform: scale(-1, -1);
-}
-
-.portfolio-details .portfolio-description .testimonial-item p {
-  font-style: italic;
-  margin: 0 0 15px 0 0 0;
-  padding: 0;
-}
-
-/*--------------------------------------------------------------
-# Service Details Section
---------------------------------------------------------------*/
-.service-details .services-list {
-  padding: 10px 30px;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  margin-bottom: 20px;
-}
-
-.service-details .services-list a {
-  display: block;
-  line-height: 1;
-  padding: 8px 0 8px 15px;
-  border-left: 3px solid color-mix(in srgb, var(--default-color), transparent 70%);
-  margin: 20px 0;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  transition: 0.3s;
-}
-
-.service-details .services-list a.active {
-  color: var(--heading-color);
-  font-weight: 700;
-  border-color: var(--accent-color);
-}
-
-.service-details .services-list a:hover {
-  border-color: var(--accent-color);
-}
-
-.service-details .services-img {
-  margin-bottom: 20px;
-}
-
-.service-details h3 {
-  font-size: 26px;
-  font-weight: 700;
-}
-
-.service-details h4 {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.service-details p {
-  font-size: 15px;
-}
-
-.service-details ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.service-details ul li {
-  padding: 5px 0;
-  display: flex;
-  align-items: center;
-}
-
-.service-details ul i {
-  font-size: 20px;
-  margin-right: 8px;
-  color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
 # Blog Posts Section
 --------------------------------------------------------------*/
 .blog-posts article {
@@ -2520,196 +2137,102 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Blog Details Section
+# Contact Section
 --------------------------------------------------------------*/
-.blog-details {
-  padding-bottom: 30px;
-}
-
-.blog-details .article {
-  padding: 30px;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.blog-details .post-img {
-  margin: -30px -30px 20px -30px;
+.contact .info {
+  background-color: var(--surface-color);
+  padding: 40px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
-.blog-details .title {
-  color: var(--heading-color);
-  font-size: 28px;
-  font-weight: 700;
-  padding: 0;
-  margin: 30px 0;
+.contact .info h3 {
+  font-weight: 600;
+  font-size: 24px;
 }
 
-.blog-details .content {
-  margin-top: 20px;
-}
-
-.blog-details .content h3 {
-  font-size: 22px;
-  margin-top: 30px;
-  font-weight: bold;
-}
-
-.blog-details .content blockquote {
-  overflow: hidden;
-  background-color: color-mix(in srgb, var(--default-color), transparent 95%);
-  padding: 60px;
-  position: relative;
-  text-align: center;
-  margin: 20px 0;
-}
-
-.blog-details .content blockquote p {
-  color: var(--default-color);
-  line-height: 1.6;
-  margin-bottom: 0;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 22px;
-}
-
-.blog-details .content blockquote:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background-color: var(--accent-color);
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.blog-details .meta-top {
-  margin-top: 20px;
+.contact .info p {
   color: color-mix(in srgb, var(--default-color), transparent 40%);
+  margin-bottom: 30px;
+  font-size: 15px;
 }
 
-.blog-details .meta-top ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-.blog-details .meta-top ul li+li {
-  padding-left: 20px;
-}
-
-.blog-details .meta-top i {
-  font-size: 16px;
-  margin-right: 8px;
-  line-height: 0;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.blog-details .meta-top a {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  font-size: 14px;
-  display: inline-block;
-  line-height: 1;
-}
-
-.blog-details .meta-bottom {
-  padding-top: 10px;
+.contact .info-item+.info-item {
+  padding-top: 20px;
+  margin-top: 20px;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
-.blog-details .meta-bottom i {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  display: inline;
-}
-
-.blog-details .meta-bottom a {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  transition: 0.3s;
-}
-
-.blog-details .meta-bottom a:hover {
+.contact .info-item i {
+  font-size: 24px;
   color: var(--accent-color);
-}
-
-.blog-details .meta-bottom .cats {
-  list-style: none;
-  display: inline;
-  padding: 0 20px 0 0;
-  font-size: 14px;
-}
-
-.blog-details .meta-bottom .cats li {
-  display: inline-block;
-}
-
-.blog-details .meta-bottom .tags {
-  list-style: none;
-  display: inline;
-  padding: 0;
-  font-size: 14px;
-}
-
-.blog-details .meta-bottom .tags li {
-  display: inline-block;
-}
-
-.blog-details .meta-bottom .tags li+li::before {
-  padding-right: 6px;
-  color: var(--default-color);
-  content: ",";
-}
-
-.blog-details .meta-bottom .share {
-  font-size: 16px;
-}
-
-.blog-details .meta-bottom .share i {
-  padding-left: 5px;
-}
-
-/*--------------------------------------------------------------
-# Blog Author Section
---------------------------------------------------------------*/
-.blog-author {
-  padding: 10px 0 40px 0;
-}
-
-.blog-author .author-container {
-  padding: 20px;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.blog-author img {
-  max-width: 120px;
+  transition: all 0.3s ease-in-out;
   margin-right: 20px;
 }
 
-.blog-author h4 {
-  font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 0px;
+.contact .info-item h4 {
   padding: 0;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-.blog-author .social-links {
-  margin: 0 10px 10px 0;
-}
-
-.blog-author .social-links a {
-  color: color-mix(in srgb, var(--default-color), transparent 60%);
-  margin-right: 5px;
-}
-
-.blog-author p {
-  font-style: italic;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+.contact .info-item p {
+  padding: 0;
   margin-bottom: 0;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
+
+.contact .php-email-form {
+  width: 100%;
+}
+
+.contact .php-email-form .form-group {
+  padding-bottom: 8px;
+}
+
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea {
+  border-radius: 0px;
+  box-shadow: none;
+  font-size: 14px;
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=email]:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email] {
+  height: 48px;
+  padding: 10px 15px;
+}
+
+.contact .php-email-form textarea {
+  padding: 10px 12px;
+  height: 290px;
+}
+
+.contact .php-email-form button[type=submit] {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border: 0;
+  padding: 13px 50px;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.contact .php-email-form button[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color) 90%, black 15%);
+}
+
+
 
 /*--------------------------------------------------------------
 # Blog Comments Section
