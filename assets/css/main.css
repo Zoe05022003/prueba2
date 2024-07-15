@@ -587,11 +587,10 @@ h6 {
 }
 
 .footer .footer-about .logo span {
-  color: var(--heading-color);
-  font-family: var(--heading-font);
-  font-size: 26px;
+  font-family: "Montserrat Subrayada", sans-serif;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: 1px;
+  color: #2E008E;
 }
 
 .footer .footer-about p {
@@ -861,27 +860,30 @@ section,
   width: 100%;
   min-height: 50vh;
   position: relative;
-  padding: 4px 0 60px 0;
+  padding: 40px 0 70px 0;
   display: flex;
   align-items: center;
-  background: url("../img/fondo1.png") center center;
+  background: url("../img/fondonuevo3.png") center center;
   background-size: cover;
 }
 
 .hero h1 {
 
   font-family: "Big Shoulders Text", sans-serif;
-  font-size: 74px;
+  font-size: 96px;
   font-weight: 900;
-  margin: 0px 0px 4px 0px;
+  margin: 0px 0px -0px 0px;
+  color: #2E008E;
 }
 
-.hero h1 span {
+.hero h2 {
   color: var(--accent-color);
   font-family: "Big Shoulders Text", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 74px;
+  font-size: 81px;
+  color:#2E008E;
+  margin-top: -2px;
 }
 
 .hero p {
@@ -890,13 +892,14 @@ section,
   font-weight: 700;
   font-optical-sizing: auto;
   font-size: 18px;
+  color: #000000;
 }
 
 .hero .btn-get-started {
   color: #ffffff;
   background: var(--contrast-color);
-  font-family: var(--heading-font);
-  font-weight: 400;
+  font-family:"Lato", sans-serif;
+  font-weight: 700;
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
@@ -950,7 +953,7 @@ section,
     font-size: 13px;
   }
 
-  .hero h1 span {
+  .hero h2 {
     color: var(--accent-color);
     font-family: "Big Shoulders Text", sans-serif;
     font-optical-sizing: auto;
@@ -981,6 +984,7 @@ section,
 .featured-services .service-item .icon {
   margin-bottom: 10px;
   text-align: center;
+  
 }
 
 .featured-services .service-item h4 {
@@ -1021,14 +1025,17 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
-.about .container .section-title{
+.about {
+background-color: #ffffff;
+}
+
+.about .section-title{
   background-color: var(--background-color);
   border: 0px;
 }
 
 .about .container {
   padding: 20px;
-  border: 1px solid #8811FF;
   background-color: #fff;
   align-content: center;
 }
@@ -1553,7 +1560,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 10%);
   line-height: 24px;
   font-size: 14px;
-  margin-bottom: 0;
+  padding-bottom: 20px;
 }
 
 .services .service-item:hover .details h3 {
@@ -1572,10 +1579,51 @@ section,
 .services .service-item:hover .img img {
   transform: scale(1.2);
 }
+
+.services .details .read-more {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 10px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: -nline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff ;
+  background: #8811FF;
+}
+
+.services .details .read-more:hover {
+  background: #2E008E;
+  padding-right: 19px;
+}
+
+.services .details .read-more:hover i {
+  margin-left: 10px;
+}
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
+.testimonials .section-title h2 {
+  font-family: "Big Shoulders Text", sans-serif;
+  font-weight: 900;
+  color: #2E008E;
+}
+
+.testimonials .section-title p {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+}
+
+
 .testimonials {
+  --default-color: #ffffff;
+  --background-color: #000000;
+  --heading-color: #ffffff;
   padding: 80px 0;
   position: relative;
 }
@@ -1605,7 +1653,7 @@ section,
 
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .testimonials .testimonial-item {
@@ -2141,15 +2189,16 @@ section,
 
 
 .recent-posts article {
-  background: #BF81FD;
+  border-radius: 0px 0px 10px 10px;
+  background: #2E008E;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
   height: 100%;
-  border-radius: 10px;
   overflow: hidden;
 }
 
 .recent-posts .post-img {
+  border-radius: 0px;
   max-height: 240px;
   margin: -30px -30px 15px -30px;
   overflow: hidden;
@@ -2159,7 +2208,7 @@ section,
   font-family: "Big Shoulders Text", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  color: #2E008E;
+  color: #FEDDFF;
   margin-bottom: 10px;
 }
 
@@ -2188,13 +2237,14 @@ section,
 }
 
 .recent-posts .post-author {
+  color: #FEDDFF;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .recent-posts .post-date {
   font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  color: #BF81FD;
   margin-bottom: 0;
 }
 
@@ -2599,8 +2649,10 @@ section,
 }
 
 .blog-posts .post-date {
+  font-family: "Lato", sans-serif;
+  font-weight: 800;
   font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  color: #2E008E ;
   margin-bottom: 0;
 }
 
@@ -2646,6 +2698,7 @@ section,
 /*--------------------------------------------------------------
 # Blog Details Section
 --------------------------------------------------------------*/
+
 .blog-details {
   padding-bottom: 30px;
 }
